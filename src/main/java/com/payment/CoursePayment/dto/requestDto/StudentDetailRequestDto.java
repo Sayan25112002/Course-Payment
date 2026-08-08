@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @Builder
@@ -12,6 +13,8 @@ import lombok.NoArgsConstructor;
 public class StudentDetailRequestDto {
 
     private String universityLogo;
+
+    private MultipartFile universityLogoFile;
 
     private String universityName;
 
@@ -29,6 +32,10 @@ public class StudentDetailRequestDto {
 
     private String photo;
 
+    private MultipartFile photoFile;
+
     private String signature;
+
+    private MultipartFile signatureFile;
 
 }
