@@ -802,6 +802,17 @@
                 </textElement>
                 <text><![CDATA[* Please print out this payment slip and submit it to your institute for approval]]></text>
             </staticText>
+            <image scaleImage="FillFrame">
+                <reportElement x="410" y="70" width="130" height="30" uuid="3f9a2400-9452-49b1-ab45-33c444c9d395"/>
+                <imageExpression><![CDATA[$P{data}.get("signature")]]></imageExpression>
+            </image>
+            <staticText>
+                <reportElement x="410" y="100" width="130" height="20" uuid="13869999-a154-4dee-b70e-ab33dba0d82c"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman"/>
+                </textElement>
+                <text><![CDATA[(Signature of Student)]]></text>
+            </staticText>
         </band>
     </detail>
 </jasperReport>
