@@ -1,11 +1,11 @@
 package com.payment.CoursePayment.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,5 +24,22 @@ public class StudentDetail {
 
     private String name;
 
+    private String registrationNumber;
+
+    private String award;
+
+    private String institute;
+
+    private String photo;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentDetail")
+    @JsonIgnore
+    private List<CourseDetails> courseDetails;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "studentDetail")
+    @JsonIgnore
+    private List<PaymentDetails> paymentDetails;
+
+    private String signature;
 
 }
