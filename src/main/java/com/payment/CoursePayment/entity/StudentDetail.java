@@ -16,6 +16,8 @@ public class StudentDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String universityLogo;
+
     private String universityName;
 
     private String universityLocation;
