@@ -37,7 +37,7 @@ public class StudentDetailResponseDto {
 
     private List<CourseDetailsResponseDto> courseDetailsResponseDtos;
 
-    private List<PaymentDetailsResponseDto> paymentDetails;
+    private List<PaymentDetailsResponseDto> paymentDetailsResponseDtos;
 
     private String signature;
 
