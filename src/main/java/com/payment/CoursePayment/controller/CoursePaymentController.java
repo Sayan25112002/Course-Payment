@@ -20,7 +20,7 @@ public class CoursePaymentController {
     private final CoursePaymentService coursePaymentService;
 
     @PostMapping("/createStudentDetail")
-    public StudentDetailResponseDto createStudentDetail(@RequestBody StudentDetailRequestDto studentDetailRequestDto) throws IOException {
+    public StudentDetailResponseDto createStudentDetail(@ModelAttribute StudentDetailRequestDto studentDetailRequestDto) throws IOException {
         return coursePaymentService.saveStudentDetail(studentDetailRequestDto);
     }
 
