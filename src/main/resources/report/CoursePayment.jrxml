@@ -152,7 +152,7 @@
             <property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
             <property name="com.jaspersoft.studio.unit.height" value="px"/>
             <line>
-                <reportElement x="0" y="0" width="1" height="190" uuid="5a8d7e20-d0f1-47fc-bed8-29783a81bd1e">
+                <reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="1" height="190" uuid="5a8d7e20-d0f1-47fc-bed8-29783a81bd1e">
                     <property name="com.jaspersoft.layout.grid.x" value="-1"/>
                     <property name="com.jaspersoft.layout.grid.y" value="-1"/>
                     <property name="com.jaspersoft.layout.grid.weight.x" value="1.0"/>
@@ -237,7 +237,7 @@
                 <textFieldExpression><![CDATA["<b>Institute:</b> "+$P{data}.get("institute")]]></textFieldExpression>
             </textField>
             <line>
-                <reportElement x="555" y="0" width="1" height="190" uuid="51d0fa8f-495a-41f0-957f-dfb97d46c486">
+                <reportElement stretchType="RelativeToTallestObject" x="555" y="0" width="1" height="190" uuid="51d0fa8f-495a-41f0-957f-dfb97d46c486">
                     <property name="com.jaspersoft.layout.grid.x" value="3"/>
                     <property name="com.jaspersoft.layout.grid.y" value="-1"/>
                     <property name="com.jaspersoft.layout.grid.weight.x" value="1.0"/>
@@ -302,8 +302,8 @@
                     <property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-                    <datasetRun subDataset="courseDataset" uuid="df73220d-8078-463e-94c6-adcda0774a8e">
-                        <dataSourceExpression><![CDATA[$P{data}.get("courseDetails")]]></dataSourceExpression>
+                    <datasetRun subDataset="courseDataset" uuid="4d7f0716-7944-4111-97fd-c9b68b8149e1">
+                        <dataSourceExpression><![CDATA[ new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource((java.util.Collection)$P{data}.get("courseDetails"))]]></dataSourceExpression>
                     </datasetRun>
                     <jr:column width="70" uuid="8befb295-6bc1-4532-a1b0-562c03704563">
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
@@ -511,9 +511,7 @@
                     <property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-                    <datasetRun subDataset="courseDataset" uuid="fb84a233-4894-45f3-9c16-a31bf2b5cc59">
-                        <dataSourceExpression><![CDATA[$P{data}.get("courseDetails")]]></dataSourceExpression>
-                    </datasetRun>
+                    <datasetRun subDataset="courseDataset" uuid="82d4835d-2fcd-47bf-b4df-9cbf8bd111b8"/>
                     <jr:column width="470" uuid="491e911e-8afa-4fb5-abd4-a26649285b3a">
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
                         <property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -623,8 +621,8 @@
                     <property name="com.jaspersoft.studio.unit.height" value="px"/>
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-                    <datasetRun subDataset="paymentDataset" uuid="b9ef8c6b-4dbc-4662-b77b-6c5b3d25b907">
-                        <dataSourceExpression><![CDATA[$P{data}.get("paymentDetails")]]></dataSourceExpression>
+                    <datasetRun subDataset="paymentDataset" uuid="c9481c4b-0540-4efb-af7e-b279e9ad627d">
+                        <dataSourceExpression><![CDATA[ new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource((java.util.Collection)$P{data}.get("paymentDetails"))]]></dataSourceExpression>
                     </datasetRun>
                     <jr:column width="120" uuid="6b709cb0-135f-457c-8fc0-b9e626320d63">
                         <jr:detailCell style="Table 1_TD" height="20">
