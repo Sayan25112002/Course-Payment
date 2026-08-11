@@ -81,6 +81,11 @@ public class CoursePaymentServiceImpl implements CoursePaymentService {
         return paymentDetailsMapper.toPaymentDetailsResponseDto(savedPaymentDetails);
     }
 
+    @Override
+    public byte[] generateCoursePaymentSlip(Long id) {
+        return new byte[0];
+    }
+
     private String saveFile(MultipartFile file) throws IOException {
         String uploadDir = System.getProperty("user.dir")+"\\src\\main\\resources\\webapp\\images\\";
         Files.createDirectories(Paths.get(uploadDir));

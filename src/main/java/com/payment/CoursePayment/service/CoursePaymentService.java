@@ -22,4 +22,6 @@ public interface CoursePaymentService {
 
     PaymentDetailsResponseDto createPaymentDetails(PaymentDetailsRequestDto paymentDetailsRequestDto, Long studentDetailId);
 
+    byte[] generateCoursePaymentSlip(Long id);
+
 }
