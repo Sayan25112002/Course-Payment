@@ -18,15 +18,21 @@ import com.payment.CoursePayment.repository.StudentDetailRepository;
 import com.payment.CoursePayment.service.CoursePaymentService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -82,8 +88,25 @@ public class CoursePaymentServiceImpl implements CoursePaymentService {
     }
 
     @Override
-    public byte[] generateCoursePaymentSlip(Long id) {
-        return new byte[0];
+    public byte[] generateCoursePaymentSlip(Long id) throws JRException {
+        String resourceDir = System.getProperty("user.dir")+"\\src\\main\\resources\\report\\";
+        Path coursePaymentsPath = Paths.get(resourceDir,"\\CoursePayment.jrxml");
+        JasperReport coursePaymentsReport = JasperCompileManager.compileReport(coursePaymentsPath.toString());
+        StudentDetail studentDetail = studentDetailRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Student Detail Not Found"));
+        JRBeanCollectionDataSource studentDataSource = new JRBeanCollectionDataSource(Collections.singletonList(studentDetail));
+        Map<String, Object> data = new HashMap<>();
+        for(Field f : studentDetail.getClass().getDeclaredFields()) {
+            f.setAccessible(true);
+            try{
+                data.put(f.getName(),f.get(studentDetail));
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        Map<String,Object> params = new HashMap<>();
+        params.put("data",data);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(coursePaymentsReport,params,studentDataSource);
+        return JasperExportManager.exportReportToPdf(jasperPrint);
     }
 
     private String saveFile(MultipartFile file) throws IOException {

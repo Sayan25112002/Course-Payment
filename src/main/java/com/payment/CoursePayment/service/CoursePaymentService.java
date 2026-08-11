@@ -6,6 +6,7 @@ import com.payment.CoursePayment.dto.requestDto.StudentDetailRequestDto;
 import com.payment.CoursePayment.dto.responseDto.CourseDetailsResponseDto;
 import com.payment.CoursePayment.dto.responseDto.PaymentDetailsResponseDto;
 import com.payment.CoursePayment.dto.responseDto.StudentDetailResponseDto;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,6 +23,6 @@ public interface CoursePaymentService {
 
     PaymentDetailsResponseDto createPaymentDetails(PaymentDetailsRequestDto paymentDetailsRequestDto, Long studentDetailId);
 
-    byte[] generateCoursePaymentSlip(Long id);
+    byte[] generateCoursePaymentSlip(Long id) throws JRException;
 
 }
