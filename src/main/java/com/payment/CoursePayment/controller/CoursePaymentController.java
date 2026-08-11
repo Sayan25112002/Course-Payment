@@ -8,6 +8,10 @@ import com.payment.CoursePayment.dto.responseDto.PaymentDetailsResponseDto;
 import com.payment.CoursePayment.dto.responseDto.StudentDetailResponseDto;
 import com.payment.CoursePayment.service.CoursePaymentService;
 import lombok.RequiredArgsConstructor;
+import net.sf.jasperreports.engine.JRException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -42,6 +46,15 @@ public class CoursePaymentController {
     @PostMapping("/createPaymentDetails/{id}")
     public PaymentDetailsResponseDto createPaymentDetails(@RequestBody PaymentDetailsRequestDto paymentDetailsRequestDto, @PathVariable Long id) {
         return coursePaymentService.createPaymentDetails(paymentDetailsRequestDto, id);
+    }
+
+    @GetMapping("/generateCoursePaymentSlip/{id}")
+    public HttpEntity<byte[]> generateCoursePaymentSlip(@PathVariable Long id) throws JRException, IOException {
+        byte[] coursePaymentSlip = coursePaymentService.generateCoursePaymentSlip(id);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("application","Course Payment Slip.pdf");
+        return new HttpEntity<>(coursePaymentSlip, headers);
     }
 
 }
